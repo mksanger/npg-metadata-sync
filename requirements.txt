@@ -1,0 +1,7 @@
+ml-warehouse-schema==0.1.0
+partisan~=0.1.dev38+gc0e0a1b.d20211123
+pytest==6.2.5
+setuptools==58.0.4
+setuptools_scm==6.3.2
+sqlalchemy==1.4.23
+structlog==21.3.0
