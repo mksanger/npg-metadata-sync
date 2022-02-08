@@ -32,7 +32,7 @@ setup(
     package_dir={"": "src"},
     setup_requires=["setuptools_scm"],
     install_requires=[
-        "ml-warehouse-python",
+        "ml-warehouse",
         "partisan",
     ],
     tests_require=["pytest"],

@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+
+  irods:
+    image: wsinpg/ub-18.04-irods-4.2.11
+    platform: linux/amd64
+    restart: always
+    ports:
+      - "1247:1247"
+    expose:
+      - 1247
+
+  mlwarehouse:
+    image: mysql/mysql-server
+    platform: linux/amd64
+    restart: always
+    ports:
+      - "3306:3306"
+    expose:
+      - 3306
+    environment:
+      MYSQL_DATABASE: mlwarehouse
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
+      MYSQL_RANDOM_ROOT_PASSWORD: yes
+
+  app:
+    build: .
+    platform: linux/amd64
+    depends_on:
+      - irods
+      - mlwarehouse
+    volumes:
+      - ./:/code

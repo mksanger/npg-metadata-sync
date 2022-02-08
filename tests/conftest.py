@@ -67,7 +67,7 @@ def mysql_url(config: configparser.ConfigParser):
     port       = <database port, defaults to 3306>
     schema     = <database schema, defaults to "mlwh">
     """
-    section = "MySQL"
+    section = "Docker" if "DOCKER" in os.environ.keys() else "MySQL"
 
     if section not in config.sections():
         raise configparser.Error(
