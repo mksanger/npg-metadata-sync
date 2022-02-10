@@ -27,7 +27,7 @@ setup(
     author_email="kdj@sanger.ac.uk",
     description=".",
     use_scm_version=True,
-    python_requires=">=3.8",
+    python_requires=">=3.9",
     packages=find_packages("src"),
     package_dir={"": "src"},
     setup_requires=["setuptools_scm"],
