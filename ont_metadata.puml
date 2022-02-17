@@ -1,0 +1,57 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+participant analysis
+
+participant irods
+
+database mlwh
+
+participant cron
+
+activate analysis
+
+cron -> irods : poll for collections requiring metadata
+activate cron
+activate irods
+cron <- irods : none
+deactivate cron
+deactivate irods
+
+analysis -> irods : create collections
+
+cron -> irods : poll for collections requiring metadata
+activate cron
+activate irods
+cron <- irods : none
+deactivate cron
+deactivate irods
+
+analysis -> mlwh : add sample, study, etc. info
+activate mlwh
+
+cron -> irods : poll for collections requiring metadata
+activate cron
+activate irods
+cron <- irods : none
+deactivate cron
+deactivate irods
+
+analysis -> irods : \tarchive data,\nadd primary metadata\n(possibly metadata that \nrequests secondary \nmetadata) to collection
+deactivate analysis
+
+cron -> irods : poll for collections requiring metadata
+activate cron
+activate irods
+cron <- irods : return collection name
+deactivate irods
+cron -> mlwh : request secondary metadata
+cron <- mlwh : return secondary metadata
+deactivate mlwh
+
+cron -> irods : add secondary metadata to collection
+deactivate cron
+'
+@enduml
